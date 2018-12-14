@@ -1,10 +1,10 @@
-const getUsers = (utils) => () => ([
+const getUsers = ({ generateRandomNumber }) => () => ([
     {
-        id: utils.generateRandomNumber(),
+        id: generateRandomNumber(),
         name: 'Foo'
     },
     {
-        id: utils.generateRandomNumber(),
+        id: generateRandomNumber(),
         name: 'Bar'
     },
 ]);
