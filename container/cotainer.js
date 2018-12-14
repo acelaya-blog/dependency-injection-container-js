@@ -4,8 +4,13 @@ const container = config => ({
             throw new Error(`Service ${service} not found`);
         }
 
-        const serviceFactory = config[service];
-        return serviceFactory(this);
+        const serviceDef = config[service];
+        if (Array.isArray(serviceDef)) {
+            const serviceFactory = serviceDef.pop();
+            return serviceFactory(...serviceDef.map(this.get.bind(this)));
+        }
+
+        return serviceDef(this);
     }
 });
 

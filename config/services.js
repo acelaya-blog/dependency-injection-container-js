@@ -5,26 +5,23 @@ const utils = require('../services/utils');
 const getUsersFactory = require('../services/getUsers');
 
 const services = {
-    mainController: container => homeControllerFactory(),
-    listUsersController: container => {
-        const getUsers = container.get('getUsers');
-        return listUsersControllerFactory(getUsers);
-    },
-
-    utilsService: container => utils,
-    getUsers: container => {
-        const utils = container.get('utilsService');
-        return getUsersFactory(utils);
-    }
-
-
-    // v2 - Factories with annotations
-
-    // mainController: [homeControllerFactory],
-    // listUsersController: ['getUsers', listUsersControllerFactory],
+    // mainController: container => homeControllerFactory(),
+    // listUsersController: container => {
+    //     const getUsers = container.get('getUsers');
+    //     return listUsersControllerFactory(getUsers);
+    // },
     //
-    // utilsService: [() => utils],
-    // getUsers: ['utilsService', getUsersFactory]
+    // utilsService: container => utils,
+    // getUsers: container => {
+    //     const utils = container.get('utilsService');
+    //     return getUsersFactory(utils);
+    // },
+
+    mainController: [homeControllerFactory],
+    listUsersController: ['getUsers', listUsersControllerFactory],
+
+    utilsService: [() => utils],
+    getUsers: ['utilsService', getUsersFactory]
 };
 
 module.exports = services;
