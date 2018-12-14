@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bottlejs": "^1.7.1",
     "express": "^4.16.4"
   }
 }
